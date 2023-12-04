@@ -5,7 +5,7 @@ from typing import List
 def check_gcd(index: int) -> List[int]:
     # Все элементы кольца
     Z = [i for i in range(index)]
-
+#############################################33333
     # Наибольшие общие делители
     all_gcd = [1]
 
