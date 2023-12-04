@@ -95,4 +95,11 @@ print()
 num = 1
 for k in check_similarity:
     print(f"H({num})= \u007B {(', '.join([str(i) for i in k]))} \u007D")
-    print(
+    print()
+    num +=1
+    for i in new_upper:
+
+        if all(elem in k for elem in i) == True and i !=[1] and k !=[1] and i != k:
+            print(f"{i} является подгруппой подгруппы {k}")
+
+
