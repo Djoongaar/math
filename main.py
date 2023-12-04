@@ -55,16 +55,16 @@ for number, divider in enumerate(all_gcd):
 print('----------------------------------------------------------------')
 print('FINAL')
 
-print(all_gcd)
-print(list_data_Hz)
-print()
+# print(all_gcd)
+# print(list_data_Hz)
+# print()
 check_similarity = []
 for delite in list_data_Hz:
     delite = list(delite)
     if not delite in check_similarity:
         check_similarity.append(delite)
 
-print(check_similarity)
+# print(check_similarity)
 
 
 upper = []
@@ -87,19 +87,24 @@ for u in upper:
     if not u in new_upper:
         new_upper.append(u)
 
-print(new_upper)
+# print(new_upper)
+2121
+print()
+print()
 
-print()
-print()
 
 num = 1
+
+
 for k in check_similarity:
     print(f"H({num})= \u007B {(', '.join([str(i) for i in k]))} \u007D")
-    print()
+    num += 1
+
+for k in check_similarity:
     num +=1
     for i in new_upper:
-
         if all(elem in k for elem in i) == True and i !=[1] and k !=[1] and i != k:
-            print(f"{i} является подгруппой подгруппы {k}")
 
+
+            print(f"H({check_similarity.index(i)+1}) = \u007B {(', '.join([str(k) for k in i]))} \u007D  является подгруппой подгруппы H({check_similarity.index(k)+1}) = \u007B {(', '.join([str(i) for i in k]))} \u007D")
 
