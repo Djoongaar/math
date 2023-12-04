@@ -1,5 +1,6 @@
 import math
 
+
 n= int(input("n = "))
 Zgcd = ['1']
 Zn = [ str(i) for i in range(n)]
