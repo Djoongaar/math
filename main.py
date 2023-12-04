@@ -1,46 +1,55 @@
 import math
+from typing import List
 
 
-n= int(input("n = "))
-Zgcd = ['1']
-Zn = [ str(i) for i in range(n)]
+def check_gcd(index: int) -> List[int]:
+    # Все элементы кольца
+    Z = [i for i in range(index)]
 
-print(f"Данное кольцо классов вычетов состоит из {n} элементов")
+    # Наибольшие общие делители
+    all_gcd = [1]
+
+    for ni in Z[2:]:
+        gcd = math.gcd(ni, index)
+        if gcd == 1:
+            all_gcd.append(ni)
+            print(f"НОД({ni},{index}) = {gcd},следовательно {ni} ∈  ℤ*{index} ")
+        else:
+            print(f"НОД({ni},{index}) = {gcd},следовательно {ni} ∉  ℤ*{index} ")
+    print()
+    print(f"Группа обратимых элементов кольца классов вычетов по модулю {index} имеет следующий вид:")
+    print(f"ℤ*{index} = {set(Z)}")
+    return all_gcd
+
+
+index = int(input("index = "))
+all_gcd = check_gcd(index)
+
+print(f"Данное кольцо классов вычетов состоит из {index} элементов")
 print()
 print(f"Может быть записано следующим образом: ")
-print(f"ℤ15 = \u007B {', '.join(Zn) } \u007D")
-print()
-def gcd_check(Zgcd,Zn,n):
-    for ni in range(2,len(Zn)):
-        gcd = math.gcd(ni, n)
-        if gcd==1:
-            Zgcd.append(Zn[ni])
-            print(f"НОД({ni},{n}) = {gcd},следовательно {Zn[ni]} ∈  ℤ*{n} ")
-
-        else:
-
-            print(f"НОД({ni},{n}) = {gcd},следовательно {Zn[ni]} ∉  ℤ*{n} ")
-
-    print()
-    print(f"Группа обратимых элементов кольца классов вычетов по модулю {n} имеет следующий вид:")
-    print(f"ℤ*{n} = \u007B {', '.join(Zgcd) } \u007D")
-    return Zgcd
-Zgcd = gcd_check(Zgcd,Zn,n)
-
+print(f"ℤ15 = {set(all_gcd)}")
 print()
 
-for i in range(len(Zgcd)):
-    Hz = ["1"]
-    coint = 1
+result = {}
+
+for number, divider in enumerate(all_gcd):
+    Hz = [1]
+    degree = 1
+
     while True:
-        H = (int(Zgcd[i])  coint) % n
-        coint += 1
+        H = (divider ** degree) % index
+        degree += 1
 
         if H == 1:
             break
 
-        if str(H) in Zn:
-            Hz.append(str(H))
+        if H in all_gcd:
+            Hz.append(H)
 
-    print(f'H{i+1} = 〈 {Zgcd[i]} 〉 = \u007B {", ".join(Hz)} \u007D')
-    print(f'O 〈 {Zgcd[i]} 〉 = {coint - 1}')
+    print(f'H{number+1} = 〈 {divider} 〉 = \u007B {", ".join([str(i) for i in Hz])} \u007D')
+    print(f'O 〈 {divider} 〉 = {degree - 1}')
+
+
+print('----------------------------------------------------------------')
+print('FINAL')
