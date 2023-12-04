@@ -5,7 +5,7 @@ from typing import List
 def check_gcd(index: int) -> List[int]:
     # Все элементы кольца
     Z = [i for i in range(index)]
-#############################################33333
+
     # Наибольшие общие делители
     all_gcd = [1]
 
@@ -31,7 +31,7 @@ print(f"Может быть записано следующим образом: 
 print(f"ℤ15 = {set(all_gcd)}")
 print()
 
-result = {}
+list_data_Hz = [] #создаем доп. список, где будем хранить все значения остатков H
 
 for number, divider in enumerate(all_gcd):
     Hz = [1]
@@ -43,13 +43,56 @@ for number, divider in enumerate(all_gcd):
 
         if H == 1:
             break
-
-        if H in all_gcd:
-            Hz.append(H)
+        Hz.append(H)
 
     print(f'H{number+1} = 〈 {divider} 〉 = \u007B {", ".join([str(i) for i in Hz])} \u007D')
     print(f'O 〈 {divider} 〉 = {degree - 1}')
 
 
+    list_data_Hz.append(set(Hz))
+
+
 print('----------------------------------------------------------------')
 print('FINAL')
+
+print(all_gcd)
+print(list_data_Hz)
+print()
+check_similarity = []
+for delite in list_data_Hz:
+    delite = list(delite)
+    if not delite in check_similarity:
+        check_similarity.append(delite)
+
+print(check_similarity)
+
+
+upper = []
+for index_check_similarity in range(len(check_similarity)):
+    if check_similarity[index_check_similarity] == 1:
+        continue
+    for next_index_check_similarity in range(index_check_similarity+1,len(check_similarity)):
+        result = all(elem in check_similarity[index_check_similarity] for elem in check_similarity[next_index_check_similarity])
+
+        if result == True:
+            upper.append(check_similarity[next_index_check_similarity])
+
+#print(a)
+
+# a = [[1, 4], [1, 4], [1, 4, 5]] проверка на одинаковые значения
+
+new_upper = []
+for u in upper:
+    u = list(u)
+    if not u in new_upper:
+        new_upper.append(u)
+
+print(new_upper)
+
+print()
+print()
+
+num = 1
+for k in check_similarity:
+    print(f"H({num})= \u007B {(', '.join([str(i) for i in k]))} \u007D")
+    print(
