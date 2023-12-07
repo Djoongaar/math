@@ -27,8 +27,10 @@ all_gcd = check_gcd(index)
 
 print(f"Данное кольцо классов вычетов состоит из {index} элементов")
 print()
+print(f"Образующие группу обратимых элементов Z*{index}")
 print(f"Может быть записано следующим образом: ")
-print(f"ℤ15 = {set(all_gcd)}")
+print(f"Z{index} = {set(all_gcd)}")
+print(f"Размер группы обратимых элементов классов вычита : |Z*{index}| = {len(all_gcd)}")
 print()
 
 list_data_Hz = [] #создаем доп. список, где будем хранить все значения остатков H
@@ -60,7 +62,8 @@ print('FINAL')
 # print()
 check_similarity = []
 for delite in list_data_Hz:
-    delite = list(delite)
+    # delite = list(delite) #нужно наладить  # налажено
+    # print(delite)
     if not delite in check_similarity:
         check_similarity.append(delite)
 
@@ -83,12 +86,12 @@ for index_check_similarity in range(len(check_similarity)):
 
 new_upper = []
 for u in upper:
-    u = list(u)
+    # u = list(u)
     if not u in new_upper:
         new_upper.append(u)
 
 # print(new_upper)
-2121
+
 print()
 print()
 
@@ -96,15 +99,22 @@ print()
 num = 1
 
 
+
 for k in check_similarity:
+    k = sorted(k)  # новая функция
     print(f"H({num})= \u007B {(', '.join([str(i) for i in k]))} \u007D")
     num += 1
 
+
+
+
 for k in check_similarity:
     num +=1
+
     for i in new_upper:
+
         if all(elem in k for elem in i) == True and i !=[1] and k !=[1] and i != k:
 
 
-            print(f"H({check_similarity.index(i)+1}) = \u007B {(', '.join([str(k) for k in i]))} \u007D  является подгруппой подгруппы H({check_similarity.index(k)+1}) = \u007B {(', '.join([str(i) for i in k]))} \u007D")
+            print(f"H({check_similarity.index(i)+1}) = \u007B {(', '.join([str(k) for k in sorted(i)]))} \u007D  является подгруппой подгруппы H({check_similarity.index(k)+1}) = \u007B {(', '.join([str(i) for i in sorted(k)]))} \u007D")
 
