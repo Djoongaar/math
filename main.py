@@ -46,9 +46,10 @@ for number, divider in enumerate(all_gcd):
         if H == 1:
             break
         Hz.append(H)
-
-    print(f'H{number+1} = 〈 {divider} 〉 = \u007B {", ".join([str(i) for i in Hz])} \u007D')
     print(f'O 〈 {divider} 〉 = {degree - 1}')
+    print(f'H{number+1} = 〈 {divider} 〉 = \u007B {", ".join([str(i) for i in Hz])} \u007D')
+    print()
+    # print(f'O 〈 {divider} 〉 = {degree - 1}')
 
 
     list_data_Hz.append(set(Hz))
@@ -98,7 +99,7 @@ print()
 
 num = 1
 
-
+print(f"Z*{index} = { set(all_gcd) }")
 
 for k in check_similarity:
     k = sorted(k)  # новая функция
@@ -106,7 +107,7 @@ for k in check_similarity:
     num += 1
 
 
-
+print()
 
 for k in check_similarity:
     num +=1
