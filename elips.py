@@ -38,12 +38,30 @@ def sum_points(x1: int, y1: int, x2:int, y2:int, mod:int):
     x3 = c**2 - x1 - x2
     y3 = c * (x1 - x3) - y1
 
-    print([x3%mod, y3%mod])
+
+
+    while True:
+        min = 1
+        if x3<0:
+            min = -1
+        x3 = x3-mod*(min)
+        if -5<=x3<=4:
+            break
+    while True:
+        min = 1
+        if y3 < 0:
+            min = -1
+        y3 = y3 - mod * (min)
+        if -5<=y3<=5:
+            break
+
+
+    print([x3, y3])
     return [x3, y3]
 
 
-# sum_same_points(x=0, y=2, a=-3, mod=7)
-# sum_points(x1=5, y1=3, x2=5, y2=-3, mod=7)
+# sum_same_points(x=0, y=5, a=-2, mod=11)
+sum_points(x1=0, y1=5, x2=-3, y2=-2, mod=11)
 # P1 (0, 2)
 # P2 (1, -3)
 # P3 (3, -1)
